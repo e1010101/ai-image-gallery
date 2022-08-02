@@ -16,7 +16,7 @@ export default function ImageGallery({ view }) {
     <>
       <SimpleGrid columns={{ base: 1, md: 2, lg: 3 }} spacing={5} mt={6}>
         {Info?.slice(0, next).map((item, index) => (
-          <Card id={index} item={item} onImageClick={view} />
+          <Card key={index} item={item} onImageClick={view} />
         ))}
       </SimpleGrid>
       {next < Info?.length && (
