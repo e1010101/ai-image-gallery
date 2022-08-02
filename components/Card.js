@@ -40,13 +40,14 @@ export default function Card({ item, onImageClick }) {
           src={item.image}
         />
       </Box>
-      <Flex px="4" py="2" mb="-3" align="center">
-        <Text color={textColor} fontWeight="bold" fontSize={["md", null, "sm"]}>
-          {item.generatedBy.toUpperCase()}
-        </Text>
-      </Flex>
-      <Flex px="4" py="2" align="center" justify="space-between" w="100%">
-        <Text color={textColor} fontSize={["xs", null, "sm"]}>
+      <Flex px="4" py="2" justify="space-between" w="100%">
+        <Text
+          margin="auto"
+          align="center"
+          noOfLines={[1, 2, 3]}
+          color={textColor}
+          fontSize={["xs", null, "sm"]}
+        >
           {item.promptText}
         </Text>
       </Flex>
