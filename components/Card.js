@@ -1,14 +1,4 @@
-import { ArrowUpIcon } from "@chakra-ui/icons";
-import {
-  Box,
-  Flex,
-  Img,
-  Link,
-  Text,
-  Heading,
-  useColorModeValue,
-  border,
-} from "@chakra-ui/react";
+import { Box, Flex, Img, Text, useColorModeValue } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 import PropTypes from "prop-types";
 

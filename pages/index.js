@@ -1,12 +1,8 @@
-import { RepeatIcon } from "@chakra-ui/icons";
 import {
   Box,
-  Button,
   Container,
   Heading,
   Link,
-  SimpleGrid,
-  Skeleton,
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
