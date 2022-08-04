@@ -9,7 +9,6 @@ import {
   MenuItemOption,
   MenuList,
   MenuOptionGroup,
-  useColorMode,
   useColorModeValue,
 } from "@chakra-ui/react";
 import PropTypes from "prop-types";
@@ -26,8 +25,20 @@ export default function Header({ imageGroup, setImageGroup, shuffle }) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
+  const mural = `/mural${useColorModeValue("", "-dark")}.png`;
+
   return (
-    <Box position="fixed" w="100%" zIndex={1} backgroundColor={bgColor}>
+    <Box
+      bgImage={mural}
+      bgPosition="center"
+      bgSize="1920px"
+      position="fixed"
+      borderBottomWidth="3px"
+      borderBottomColor={useColorModeValue("white", "black")}
+      w="100%"
+      zIndex={1}
+      backgroundColor={bgColor}
+    >
       <Container
         maxW="6xl"
         py={3}
@@ -35,7 +46,16 @@ export default function Header({ imageGroup, setImageGroup, shuffle }) {
         justifyContent="space-between"
         alignItems="center"
       >
-        <Button variant="ghost" fontSize="xl" onClick={scrollToTop}>
+        <Button
+          bgColor={useColorModeValue("white", "black")}
+          variant="solid"
+          fontSize="xl"
+          _hover={useColorModeValue(
+            { backgroundColor: "black", color: "white" },
+            { backgroundColor: "white", color: "black" }
+          )}
+          onClick={scrollToTop}
+        >
           Home
         </Button>
         <Box>

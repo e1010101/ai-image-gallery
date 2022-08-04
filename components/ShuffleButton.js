@@ -29,8 +29,13 @@ const ShuffleButton = ({ shuffle }) => {
           ml={1}
           mr={1}
           aria-label="Shuffle Images"
-          colorScheme={useColorModeValue("purple", "orange")}
+          color={useColorModeValue("black", "white")}
+          bgColor={useColorModeValue("white", "black")}
           icon={<RepeatIcon />}
+          _hover={useColorModeValue(
+            { backgroundColor: "black", color: "white" },
+            { backgroundColor: "white", color: "black" }
+          )}
           onClick={() => {
             setRotate(true);
             shuffle();
