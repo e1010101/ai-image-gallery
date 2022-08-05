@@ -28,6 +28,7 @@ export default function Card({ item, onImageClick }) {
           h="100%"
           objectFit="cover"
           src={item.image}
+          alt={item.promptText}
         />
       </Box>
       <Flex px="4" py="2" justify="space-between" w="100%">
