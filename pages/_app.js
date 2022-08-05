@@ -1,15 +1,22 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import PropTypes from "prop-types";
-
-import Head from "../components/Head";
+import { lazy, Suspense } from "react";
 import theme from "../styles/theme";
 import "@fontsource/merriweather";
 import "@fontsource/poppins";
 
+const HeadComponent = lazy(() => import("../components/Head"));
+const renderLoader = () => <p>Loading</p>;
+
 export default function MyApp({ Component, pageProps }) {
   return (
     <ChakraProvider theme={theme}>
-      <Head title="Ezra's Gallery" description="AI-Generated Artwork" />
+      <Suspense fallback={renderLoader()}>
+        <HeadComponent
+          title="Ezra's Gallery"
+          description="AI-Generated Artwork"
+        />
+      </Suspense>
       <Component {...pageProps} />
     </ChakraProvider>
   );

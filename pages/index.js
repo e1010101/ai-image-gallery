@@ -6,11 +6,13 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useState, useEffect } from "react";
-import Header from "../components/Header";
-import ImageGallery from "../components/ImageGallery";
-import PreviewImage from "../components/PreviewImage";
+import { useState, useEffect, lazy, Suspense } from "react";
 import { Generators, Info } from "../lib/Info";
+
+const HeaderComponent = lazy(() => import("../components/Header"));
+const ImageGalleryComponent = lazy(() => import("../components/ImageGallery"));
+const PreviewImageComponent = lazy(() => import("../components/PreviewImage"));
+const renderLoader = () => <p>Loading</p>;
 
 function shuffle(array) {
   let currentIndex = array.length,
@@ -36,7 +38,7 @@ export default function Home() {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [imageGroup, setImageGroup] = useState(Generators);
   const [selectedItem, setSelectedItem] = useState(null);
-  const [filter, setFilter] = useState("hot");
+  // const [filter, setFilter] = useState("hot");
 
   // randomize items when page loads
   const [list, setList] = useState(Info);
@@ -57,11 +59,13 @@ export default function Home() {
 
   return (
     <Box minHeight="100vh" maxW="auto" display="flex" flexDir="column">
-      <Header
-        imageGroup={imageGroup}
-        setImageGroup={setImageGroup}
-        shuffle={handleShuffle}
-      />
+      <Suspense fallback={renderLoader()}>
+        <HeaderComponent
+          imageGroup={imageGroup}
+          setImageGroup={setImageGroup}
+          shuffle={handleShuffle}
+        />
+      </Suspense>
       <Container maxW="6xl" mt="95px" flex={1}>
         <Box textAlign="center">
           <Heading letterSpacing="widest" as="h1" size="4xl">
@@ -84,10 +88,20 @@ export default function Home() {
             and other generators.
           </Heading>
         </Box>
-        <ImageGallery view={view} imageGroup={imageGroup} info={list} />
+        <Suspense fallback={renderLoader()}>
+          <ImageGalleryComponent
+            view={view}
+            imageGroup={imageGroup}
+            info={list}
+          />
+        </Suspense>
       </Container>
       {selectedItem && (
-        <PreviewImage item={selectedItem} isOpen={isOpen} onClose={onClose} />
+        <PreviewImageComponent
+          item={selectedItem}
+          isOpen={isOpen}
+          onClose={onClose}
+        />
       )}
       <Container as="footer" maxW="xl" textAlign="center" py={10}>
         <Text fontWeight="bold">
