@@ -58,59 +58,61 @@ export default function Home() {
   };
 
   return (
-    <Box minHeight="100vh" maxW="auto" display="flex" flexDir="column">
-      <Suspense fallback={renderLoader()}>
-        <HeaderComponent
-          imageGroup={imageGroup}
-          setImageGroup={setImageGroup}
-          shuffle={handleShuffle}
-        />
-      </Suspense>
-      <Container maxW="6xl" mt="95px" flex={1}>
-        <Box textAlign="center">
-          <Heading letterSpacing="widest" as="h1" size="4xl">
-            Ezra's Gallery
-          </Heading>
-          <Heading
-            letterSpacing="wider"
-            fontSize="lg"
-            fontWeight="semibold"
-            mt={4}
-          >
-            AI-generated art from{" "}
-            <Link href="https://labs.openai.com/" isExternal>
-              DALL-E 2
-            </Link>
-            ,{" "}
-            <Link href="https://www.midjourney.com/" isExternal>
-              Midjourney
-            </Link>{" "}
-            and other generators.
-          </Heading>
-        </Box>
+    <Suspense fallback={renderLoader()}>
+      <Box minHeight="100vh" maxW="auto" display="flex" flexDir="column">
         <Suspense fallback={renderLoader()}>
-          <ImageGalleryComponent
-            view={view}
+          <HeaderComponent
             imageGroup={imageGroup}
-            info={list}
+            setImageGroup={setImageGroup}
+            shuffle={handleShuffle}
           />
         </Suspense>
-      </Container>
-      {selectedItem && (
-        <PreviewImageComponent
-          item={selectedItem}
-          isOpen={isOpen}
-          onClose={onClose}
-        />
-      )}
-      <Container as="footer" maxW="xl" textAlign="center" py={10}>
-        <Text fontWeight="bold">
-          Visit my{" "}
-          <Link href="https://github.com/e1010101" isExternal>
-            Github!
-          </Link>
-        </Text>
-      </Container>
-    </Box>
+        <Container maxW="6xl" mt="95px" flex={1}>
+          <Box textAlign="center">
+            <Heading letterSpacing="widest" as="h1" size="4xl">
+              Ezra's Gallery
+            </Heading>
+            <Heading
+              letterSpacing="wider"
+              fontSize="lg"
+              fontWeight="semibold"
+              mt={4}
+            >
+              AI-generated art from{" "}
+              <Link href="https://labs.openai.com/" isExternal>
+                DALL-E 2
+              </Link>
+              ,{" "}
+              <Link href="https://www.midjourney.com/" isExternal>
+                Midjourney
+              </Link>{" "}
+              and other generators.
+            </Heading>
+          </Box>
+          <Suspense fallback={renderLoader()}>
+            <ImageGalleryComponent
+              view={view}
+              imageGroup={imageGroup}
+              info={list}
+            />
+          </Suspense>
+        </Container>
+        {selectedItem && (
+          <PreviewImageComponent
+            item={selectedItem}
+            isOpen={isOpen}
+            onClose={onClose}
+          />
+        )}
+        <Container as="footer" maxW="xl" textAlign="center" py={10}>
+          <Text fontWeight="bold">
+            Visit my{" "}
+            <Link href="https://github.com/e1010101" isExternal>
+              Github!
+            </Link>
+          </Text>
+        </Container>
+      </Box>
+    </Suspense>
   );
 }

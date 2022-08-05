@@ -32,6 +32,7 @@ export default function PreviewImage({ item, isOpen, onClose }) {
       isOpen={isOpen}
       onClose={onClose}
       motionPreset="slideInBottom"
+      preserveScrollBarGap
     >
       <ModalOverlay />
       <ModalContent>
