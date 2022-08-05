@@ -25,7 +25,7 @@ export default function Header({ imageGroup, setImageGroup, shuffle }) {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  const mural = `/mural${useColorModeValue("", "-dark")}.png`;
+  const mural = `/mural${useColorModeValue("", "-dark")}.webp`;
 
   return (
     <Box
