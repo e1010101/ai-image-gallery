@@ -6,13 +6,11 @@ import {
   Text,
   useDisclosure,
 } from "@chakra-ui/react";
-import { useState, useEffect, lazy, Suspense } from "react";
+import { useState, useEffect } from "react";
 import { Generators, Info } from "../lib/Info";
-
-const HeaderComponent = lazy(() => import("../components/Header"));
-const ImageGalleryComponent = lazy(() => import("../components/ImageGallery"));
-const PreviewImageComponent = lazy(() => import("../components/PreviewImage"));
-const renderLoader = () => <p>Loading</p>;
+import Header from "../components/Header";
+import ImageGallery from "../components/ImageGallery";
+import PreviewImage from "../components/PreviewImage";
 
 function shuffle(array) {
   let currentIndex = array.length,
@@ -59,52 +57,38 @@ export default function Home() {
 
   return (
     <Box minHeight="100vh" maxW="auto" display="flex" flexDir="column">
-      <Suspense fallback={renderLoader()}>
-        <Suspense fallback={renderLoader()}>
-          <HeaderComponent
-            imageGroup={imageGroup}
-            setImageGroup={setImageGroup}
-            shuffle={handleShuffle}
-          />
-        </Suspense>
-        <Container maxW="6xl" mt="95px" flex={1}>
-          <Box textAlign="center">
-            <Heading letterSpacing="widest" as="h1" size="4xl">
-              Ezra's Gallery
-            </Heading>
-            <Heading
-              letterSpacing="wider"
-              fontSize="lg"
-              fontWeight="semibold"
-              mt={4}
-            >
-              AI-generated art from{" "}
-              <Link href="https://labs.openai.com/" isExternal>
-                DALL-E 2
-              </Link>
-              ,{" "}
-              <Link href="https://www.midjourney.com/" isExternal>
-                Midjourney
-              </Link>{" "}
-              and other generators.
-            </Heading>
-          </Box>
-          <Suspense fallback={renderLoader()}>
-            <ImageGalleryComponent
-              view={view}
-              imageGroup={imageGroup}
-              info={list}
-            />
-          </Suspense>
-        </Container>
-        {selectedItem && (
-          <PreviewImageComponent
-            item={selectedItem}
-            isOpen={isOpen}
-            onClose={onClose}
-          />
-        )}
-      </Suspense>
+      <Header
+        imageGroup={imageGroup}
+        setImageGroup={setImageGroup}
+        shuffle={handleShuffle}
+      />
+      <Container maxW="6xl" mt="95px" flex={1}>
+        <Box textAlign="center">
+          <Heading letterSpacing="widest" as="h1" size="4xl">
+            Ezra's Gallery
+          </Heading>
+          <Heading
+            letterSpacing="wider"
+            fontSize="lg"
+            fontWeight="semibold"
+            mt={4}
+          >
+            AI-generated art from{" "}
+            <Link href="https://labs.openai.com/" isExternal>
+              DALL-E 2
+            </Link>
+            ,{" "}
+            <Link href="https://www.midjourney.com/" isExternal>
+              Midjourney
+            </Link>{" "}
+            and other generators.
+          </Heading>
+        </Box>
+        <ImageGallery view={view} imageGroup={imageGroup} info={list} />
+      </Container>
+      {selectedItem && (
+        <PreviewImage item={selectedItem} isOpen={isOpen} onClose={onClose} />
+      )}
       <Container as="footer" maxW="xl" textAlign="center" py={10}>
         <Text fontWeight="bold">
           Visit my{" "}

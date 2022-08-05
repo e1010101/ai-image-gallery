@@ -7,7 +7,7 @@ export default function Head({ title, description }) {
       <title>{title}</title>
       <meta
         name="viewport"
-        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1"
+        content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=5"
       />
       <meta name="description" content={description} />
       <meta property="og:title" content={title} key="title" />
