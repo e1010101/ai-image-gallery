@@ -58,8 +58,8 @@ export default function Home() {
   };
 
   return (
-    <Suspense fallback={renderLoader()}>
-      <Box minHeight="100vh" maxW="auto" display="flex" flexDir="column">
+    <Box minHeight="100vh" maxW="auto" display="flex" flexDir="column">
+      <Suspense fallback={renderLoader()}>
         <Suspense fallback={renderLoader()}>
           <HeaderComponent
             imageGroup={imageGroup}
@@ -104,15 +104,15 @@ export default function Home() {
             onClose={onClose}
           />
         )}
-        <Container as="footer" maxW="xl" textAlign="center" py={10}>
-          <Text fontWeight="bold">
-            Visit my{" "}
-            <Link href="https://github.com/e1010101" isExternal>
-              Github!
-            </Link>
-          </Text>
-        </Container>
-      </Box>
-    </Suspense>
+      </Suspense>
+      <Container as="footer" maxW="xl" textAlign="center" py={10}>
+        <Text fontWeight="bold">
+          Visit my{" "}
+          <Link href="https://github.com/e1010101" isExternal>
+            Github!
+          </Link>
+        </Text>
+      </Container>
+    </Box>
   );
 }
